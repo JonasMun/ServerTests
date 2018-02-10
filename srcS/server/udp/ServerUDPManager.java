@@ -1,5 +1,6 @@
 
 import java.net.DatagramPacket;
+import java.net.InetAddress;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.stream.Collectors;
@@ -25,11 +26,13 @@ public class ServerUDPManager extends Thread{
 	int portListener;
 	int portBroadcast;
 	String groupID;
+	String serverIP;
 	
 	protected ServerUDPManager() {
 		portListener = 6666;
 		portBroadcast = 6667;
 		groupID = "230.0.0.0";
+		serverIP = "localhost";
 	}
 	
 	/*
@@ -86,6 +89,7 @@ public class ServerUDPManager extends Thread{
 	
 	public void showInformation() {
 		System.out.println();
+		System.out.println("Server IP: " + InetAddress.getByName(serverIP));
 		System.out.println("Port Listener: " + portListener);
 		System.out.println("Port Broadcaster: " + portBroadcast);
 		System.out.println("Group Address/ID: " + groupID);
