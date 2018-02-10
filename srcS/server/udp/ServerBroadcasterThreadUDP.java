@@ -55,6 +55,17 @@ public class ServerBroadcasterThreadUDP extends Thread{
     			byte[] gameStateByte = NetTools.serialize(gameState);
     			multicast(gameStateByte);
     		}
+    		
+    		//------------Test Area-----------
+    		if(!ServerUDPManager.queueTestStates.isEmpty()) {
+    			String stringState = ServerUDPManager.queueTestStates.poll();
+    			multicast(stringState.getBytes());
+    		}
+    		
+    		
+    		//------------End of Test Area-----
+    		
+    		
     	}
     }
     

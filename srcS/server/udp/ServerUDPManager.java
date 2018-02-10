@@ -21,6 +21,9 @@ public class ServerUDPManager extends Thread{
 	//Current Game State.
 	protected static AbstractMessage gameStates = new AbstractMessage();
 	
+	
+	protected static Queue<String> queueTestStates = new LinkedList<String>();
+	
 	ServerBroadcasterThreadUDP BSocket;
 	ServerListenerThreadUDP SListener;
 
@@ -78,6 +81,10 @@ public class ServerUDPManager extends Thread{
 	//Game Logic uses these packets to update game.
 	public void addToQueueMessages(AbstractMessage msg) {
 		queueMessages.add(msg);
+	}
+	
+	public void addToQueueTest(String strg) {
+		queueTestStates.add(strg);
 	}
 	
 	public boolean listenerRunning() {
