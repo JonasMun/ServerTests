@@ -18,13 +18,6 @@ public class Server {
 		System.out.println("Starting UDP Manager.");
 		UDPManager.run();
 		
-		if(runningListener() && runningBroadcaster()) {
-			System.out.println("UDP Manager up and running.");
-		} else {
-			System.out.println("Unable to start UDP Manager.");
-			return;
-		}
-		
 
 	}
 	

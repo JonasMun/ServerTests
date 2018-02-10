@@ -48,7 +48,7 @@ public class ServerBroadcasterThreadUDP extends Thread{
 		}
     	isRunning = true;
     	//Send updates to all players.
-    	System.out.println("Awaiting packets to broadcast.");
+    	System.out.println("SERVER BROADCASTER Activated");
     	while (true) {
     		if(!ServerUDPManager.queueGameStates.isEmpty()) {
     			AbstractMessage gameState = ServerUDPManager.queueGameStates.poll();

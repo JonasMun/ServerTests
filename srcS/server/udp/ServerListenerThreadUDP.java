@@ -28,7 +28,7 @@ public class ServerListenerThreadUDP extends Thread{
 			e1.printStackTrace();
 		}
     	
-    	//System.out.println("Server UDP Listener Activated.");
+    	System.out.println("SERVER UDP LISTENER Activated.");
     	isRunning = true;
     	while(true) {
     		byte[] data = new byte[MAX_PACKET_SIZE];
