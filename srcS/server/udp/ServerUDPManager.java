@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.util.LinkedList;
@@ -89,7 +90,11 @@ public class ServerUDPManager extends Thread{
 	
 	public void showInformation() {
 		System.out.println();
+		try {
 		System.out.println("Server IP: " + InetAddress.getByName(serverIP));
+		} catch (IOException e){
+			e.printStackTrace();
+		}
 		System.out.println("Port Listener: " + portListener);
 		System.out.println("Port Broadcaster: " + portBroadcast);
 		System.out.println("Group Address/ID: " + groupID);
