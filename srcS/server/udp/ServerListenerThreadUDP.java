@@ -4,10 +4,10 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 
-import engine.common_net.AbstractMessage;
-import engine.common_net.Deserialization;
-
 public class ServerListenerThreadUDP extends Thread{
+	//Test variable
+	private boolean isRunning = false;
+	
     private static DatagramSocket UDPsocket;
     private int port;
     private int MAX_PACKET_SIZE;
@@ -28,8 +28,8 @@ public class ServerListenerThreadUDP extends Thread{
 			e1.printStackTrace();
 		}
     	
-    	System.out.println("Server UDP Listener Activated.");
-    	
+    	//System.out.println("Server UDP Listener Activated.");
+    	isRunning = true;
     	while(true) {
     		byte[] data = new byte[MAX_PACKET_SIZE];
     		DatagramPacket receivePacket = new DatagramPacket(data, data.length);
@@ -47,6 +47,10 @@ public class ServerListenerThreadUDP extends Thread{
 			}
     	}
     	
+    }
+    
+    public boolean getStatus() {
+    	return isRunning;
     }
     
     

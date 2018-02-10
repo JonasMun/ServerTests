@@ -6,9 +6,6 @@ import java.net.MulticastSocket;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import engine.common_net.AbstractMessage;
-import engine.common_net.Serialization;
-
 /*
  * Not recommended to run as a thread.
  * Initializes Multicast Socket to send packets to all clients.
@@ -21,6 +18,8 @@ import engine.common_net.Serialization;
  */
 
 public class ServerBroadcasterThreadUDP extends Thread{
+	
+	private boolean isRunning = false;
 	
 	private static MulticastSocket MCSocket;
 	private String groupID;
@@ -47,7 +46,9 @@ public class ServerBroadcasterThreadUDP extends Thread{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	isRunning = true;
     	//Send updates to all players.
+    	System.out.println("Awaiting packets to broadcast.");
     	while (true) {
     		if(!ServerUDPManager.queueGameStates.isEmpty()) {
     			AbstractMessage gameState = ServerUDPManager.queueGameStates.poll();
@@ -77,6 +78,10 @@ public class ServerBroadcasterThreadUDP extends Thread{
 			e.printStackTrace();
 		}
     	
+    }
+    
+    public boolean getStatus() {
+    	return isRunning;
     }
 
 }

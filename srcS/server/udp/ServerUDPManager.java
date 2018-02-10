@@ -9,6 +9,10 @@ import engine.common_net.AbstractMessage;
 
 public class ServerUDPManager extends Thread{
 	
+	
+	private boolean listenerUp = false;
+	private boolean broadcasterUp = false;
+	
 	//Listeners add messages to this queue.
 	protected static volatile Queue<AbstractMessage> queueMessages = new LinkedList<AbstractMessage>();
 	//Gamelogic gives new game states onto this queue.
@@ -24,7 +28,10 @@ public class ServerUDPManager extends Thread{
 	String groupID;
 	
 	protected ServerUDPManager() {
-		
+		portListener = 6666;
+		portBroadcast = 6667;
+		groupID = "230.0.0.0";
+		System.out.println("Default Settings.");
 	}
 	
 	/*
@@ -36,8 +43,8 @@ public class ServerUDPManager extends Thread{
 	
 	public void run() {
 		
-		startListener(6666,1024);
-		startBroadcastSender("230.0.0.0", 6667);
+		startListener(portListener,1024);
+		startBroadcastSender(groupID, portBroadcast);
 		
 		//GameLogicThreadUDP GLThread = new GameLogicThreadUDP();
 		
@@ -47,11 +54,13 @@ public class ServerUDPManager extends Thread{
 	private void startListener(int serverPort, int MAX_PACKET_SIZE) {
 		SListener = new ServerListenerThreadUDP(serverPort, MAX_PACKET_SIZE);
 		SListener.start();
+		listenerUp = SListener.getStatus();
 	}
 	
 	private void startBroadcastSender(String groupID, int groupPort) {
 		BSocket = new ServerBroadcasterThreadUDP(groupID, groupPort);
 		BSocket.start();
+		broadcasterUp = BSocket.getStatus();
 	}
 	
 	//Used by the Broadcaster
@@ -61,6 +70,14 @@ public class ServerUDPManager extends Thread{
 	//Game Logic uses these packets to update game.
 	public void addToQueueMessages(AbstractMessage msg) {
 		queueMessages.add(msg);
+	}
+	
+	public boolean listenerRunning() {
+		return listenerUp;
+	}
+	
+	public boolean broadcasterRunning() {
+		return broadcasterUp;
 	}
 	
 }
