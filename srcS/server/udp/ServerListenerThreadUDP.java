@@ -38,8 +38,8 @@ public class ServerListenerThreadUDP extends Thread{
 				System.out.println("Received Packet");
 				
 				//-------------Receiving Objects---------
-				AbstractMessage gameMessage = NetTools.deserialize(receivePacket.getData());
-				ServerQueue.addToQueueMessages(gameMessage);
+				//AbstractMessage gameMessage = NetTools.deserialize(receivePacket.getData());
+				//ServerQueue.addToQueueMessages(gameMessage);
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
