@@ -5,10 +5,9 @@ import java.util.Queue;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import engine.common_net.AbstractMessage;
-
 public class ServerUDPManager extends Thread{
 	
+	private boolean setDefault = false;
 	
 	private boolean listenerUp = false;
 	private boolean broadcasterUp = false;
@@ -31,7 +30,6 @@ public class ServerUDPManager extends Thread{
 		portListener = 6666;
 		portBroadcast = 6667;
 		groupID = "230.0.0.0";
-		System.out.println("Default Settings.");
 	}
 	
 	/*
@@ -42,7 +40,11 @@ public class ServerUDPManager extends Thread{
 	*/
 	
 	public void run() {
-		
+		if(setDefault) {
+			System.out.println("UDP Default settings.");
+		} else {
+			System.out.println("Custom settings.");
+		}
 		startListener(portListener,1024);
 		startBroadcastSender(groupID, portBroadcast);
 		
