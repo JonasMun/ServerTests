@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 public class ServerUDPManager extends Thread{
 	
-	private boolean setDefault = false;
+	private boolean setDefault = true;
 	
 	private boolean listenerUp = false;
 	private boolean broadcasterUp = false;
@@ -48,6 +48,8 @@ public class ServerUDPManager extends Thread{
 		startListener(portListener,1024);
 		startBroadcastSender(groupID, portBroadcast);
 		
+		showInformation();
+		
 		//GameLogicThreadUDP GLThread = new GameLogicThreadUDP();
 		
 		//GLThread.start();
@@ -80,6 +82,13 @@ public class ServerUDPManager extends Thread{
 	
 	public boolean broadcasterRunning() {
 		return broadcasterUp;
+	}
+	
+	public void showInformation() {
+		System.out.println();
+		System.out.println("Port Listener: " + portListener);
+		System.out.println("Port Broadcaster: " + portBroadcast);
+		System.out.println("Group Address/ID: " + groupID);
 	}
 	
 }
