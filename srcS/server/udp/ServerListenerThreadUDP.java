@@ -1,4 +1,3 @@
-package server.udp;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

@@ -1,6 +1,4 @@
-package server.udp;
 
-import engine.common_net.AbstractMessage;
 
 public class Server {
 

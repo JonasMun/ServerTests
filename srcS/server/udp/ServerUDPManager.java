@@ -1,4 +1,3 @@
-package server.udp;
 
 import java.net.DatagramPacket;
 import java.util.LinkedList;
