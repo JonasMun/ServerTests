@@ -15,9 +15,9 @@ public class ServerUDPManager extends Thread{
 	private boolean defaultSettings = true;
 	
 	//Listeners add messages to this queue.
-	protected static volatile Queue<AbstractMessage> queueMessages = new LinkedList<AbstractMessage>();
+	protected static volatile Queue<udpMessage> queueMessages = new LinkedList<udpMessage>();
 	//Gamelogic gives new game states onto this queue.
-	protected static volatile Queue<AbstractMessage> queueGameStates = new LinkedList<AbstractMessage>();
+	protected static volatile Queue<udpMessage> queueGameStates = new LinkedList<udpMessage>();
 	//Current Game State.
 	protected static AbstractMessage gameStates = new AbstractMessage();
 	
@@ -85,11 +85,11 @@ public class ServerUDPManager extends Thread{
 	}
 	
 	//Used by the Broadcaster
-	public void addToQueueStates(AbstractMessage newState) {
+	public void addToQueueStates(udpMessage newState) {
 		queueGameStates.add(newState);
 	}
 	//Game Logic uses these packets to update game.
-	public void addToQueueMessages(AbstractMessage msg) {
+	public void addToQueueMessages(udpMessage msg) {
 		queueMessages.add(msg);
 	}
 	

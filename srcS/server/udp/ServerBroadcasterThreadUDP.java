@@ -49,7 +49,7 @@ public class ServerBroadcasterThreadUDP extends Thread{
     	//Send updates to all players.
     	while (true) {
     		if(!ServerUDPManager.queueGameStates.isEmpty()) {
-    			AbstractMessage gameState = ServerUDPManager.queueGameStates.poll();
+    			udpMessage gameState = ServerUDPManager.queueGameStates.poll();
     			byte[] gameStateByte = NetTools.serialize(gameState);
     			multicast(gameStateByte);
     		}

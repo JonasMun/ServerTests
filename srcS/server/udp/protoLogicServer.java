@@ -19,7 +19,7 @@ public class protoLogicServer extends Thread{
 		
 		while(true) {
 			if(!udpManager.queueMessages.isEmpty()) {
-				AbstractMessage newMessage = udpManager.queueMessages.poll();
+				udpMessage newMessage = udpManager.queueMessages.poll();
 				if(newMessage.getClass().isInstance(gameMessage)) {
 					gameMessage = (udpMessage) newMessage;
 					gameLogic(gameMessage);
