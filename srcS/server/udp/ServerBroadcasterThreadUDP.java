@@ -1,3 +1,4 @@
+package server.udp;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -5,6 +6,7 @@ import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.util.LinkedList;
 import java.util.Queue;
+
 
 /*
  * Not recommended to run as a thread.
@@ -18,8 +20,6 @@ import java.util.Queue;
  */
 
 public class ServerBroadcasterThreadUDP extends Thread{
-	
-	private boolean isRunning = false;
 	
 	private static MulticastSocket MCSocket;
 	private String groupID;
@@ -41,31 +41,18 @@ public class ServerBroadcasterThreadUDP extends Thread{
 			MCSocket = new MulticastSocket(groupPort);
 			group = InetAddress.getByName(groupID);
 			MCSocket.joinGroup(group);
-			
+			System.out.println("SERVER BROADCASTER Activated.");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	isRunning = true;
     	//Send updates to all players.
-    	System.out.println("SERVER BROADCASTER Activated");
     	while (true) {
     		if(!ServerUDPManager.queueGameStates.isEmpty()) {
     			AbstractMessage gameState = ServerUDPManager.queueGameStates.poll();
     			byte[] gameStateByte = NetTools.serialize(gameState);
     			multicast(gameStateByte);
     		}
-    		
-    		//------------Test Area-----------
-    		if(!ServerUDPManager.queueTestStates.isEmpty()) {
-    			String stringState = ServerUDPManager.queueTestStates.poll();
-    			multicast(stringState.getBytes());
-    		}
-    		
-    		
-    		//------------End of Test Area-----
-    		
-    		
     	}
     }
     
@@ -89,10 +76,6 @@ public class ServerBroadcasterThreadUDP extends Thread{
 			e.printStackTrace();
 		}
     	
-    }
-    
-    public boolean getStatus() {
-    	return isRunning;
     }
 
 }
