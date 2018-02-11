@@ -5,7 +5,7 @@ import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 
 public class Deserialization {
-	/*
+	
 	public Object deserialize(byte[] packet) {
 		ByteArrayInputStream bis = new ByteArrayInputStream(packet);
 		ObjectInput in = null;
@@ -28,7 +28,9 @@ public class Deserialization {
 		}
 		return in;
 	}
-	*/
+	
+	
+	/*
 	public Object deserialize(byte[] data) {
 		ByteArrayInputStream in = new ByteArrayInputStream(data);
 		try {
@@ -45,6 +47,6 @@ public class Deserialization {
 			e.printStackTrace();
 		}
 		return null;
-	}
+	}*/
 	
 }
