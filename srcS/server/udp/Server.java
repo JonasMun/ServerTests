@@ -20,13 +20,5 @@ public class Server {
 		
 
 	}
-	
-	private static boolean runningListener() {
-		return UDPManager.listenerRunning();
-	}
-	
-	private static boolean runningBroadcaster() {
-		return UDPManager.broadcasterRunning();
-	}
 
 }
