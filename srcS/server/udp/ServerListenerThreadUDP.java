@@ -38,8 +38,9 @@ public class ServerListenerThreadUDP extends Thread{
 				System.out.println("Received Packet");
 				
 				//-------------Receiving Objects---------
-				
-				udpMessage gameMessage = NetTools.deserialize(receivePacket.getData());
+				byte[] gameByte = receivePacket.getData();
+				System.out.println("Received game bytes.");
+				udpMessage gameMessage = NetTools.deserialize(gameByte);
 				if (gameMessage instanceof udpMessage) {
 					ServerQueue.addToQueueMessages((udpMessage) gameMessage);
 				}

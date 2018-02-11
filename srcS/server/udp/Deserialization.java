@@ -29,14 +29,14 @@ public class Deserialization {
 		return in;
 	}
 	*/
-	public udpMessage deserialize(byte[] data) {
+	public Object deserialize(byte[] data) {
 		ByteArrayInputStream in = new ByteArrayInputStream(data);
 		try {
 			ObjectInputStream is = new ObjectInputStream(in);
 			Object message = is.readObject();
 			//Output the values of the objects.
 			//System.out.println("Message received = " +message.b);
-			return (udpMessage) message;
+			return message;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
