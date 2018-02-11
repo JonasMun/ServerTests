@@ -33,10 +33,10 @@ public class Deserialization {
 		ByteArrayInputStream in = new ByteArrayInputStream(data);
 		try {
 			ObjectInputStream is = new ObjectInputStream(in);
-			udpMessage message = (udpMessage) is.readObject();
+			Object message = (udpMessage) is.readObject();
 			//Output the values of the objects.
 			//System.out.println("Message received = " +message.b);
-			return message;
+			return (udpMessage) message;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
