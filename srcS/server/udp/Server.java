@@ -12,9 +12,6 @@ public class Server {
 		
 		Server server = new Server();
 		
-		System.out.println("Server Initiated.");
-		System.out.println("Goodbye.");
-		
 		System.out.println("Starting UDP Manager.");
 		UDPManager.run();
 		
