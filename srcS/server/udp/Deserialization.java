@@ -29,7 +29,7 @@ public class Deserialization {
 		return in;
 	}
 	*/
-	public AbstractMessage deserialize(byte[] data) {
+	public udpMessage deserialize(byte[] data) {
 		ByteArrayInputStream in = new ByteArrayInputStream(data);
 		try {
 			ObjectInputStream is = new ObjectInputStream(in);
